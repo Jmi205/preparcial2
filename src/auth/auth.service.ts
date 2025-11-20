@@ -8,6 +8,7 @@ import { UserService } from 'src/user/user.service';
 import { RegisterDto } from './dto/register.dto';
 import * as bcrypt from 'bcrypt';
 import { LoginDto } from './dto/login.dto';
+import { log } from 'console';
 
 @Injectable()
 export class AuthService {
@@ -45,7 +46,6 @@ export class AuthService {
 
     if (!user) throw new UnauthorizedException('Credenciales incorrectas');
     if (!user.is_active) throw new HttpException('Usuario desactivado', 423);
-
     const match = await bcrypt.compare(dto.password, user.password);
     if (!match) throw new UnauthorizedException('Credenciales incorrectas');
 

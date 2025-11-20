@@ -35,7 +35,6 @@ export class UserService {
 
     if (!user) return null;
 
-    delete (user as any).password;
     return user;
   }
 
