@@ -36,9 +36,9 @@ export class AppointmentController {
   
   @Roles('paciente', 'doctor', 'admin')
   @Put(':id')
-  async deleteAppointment(@Param('id') id: string) {
-    return await this.appointmentService.deleteAppointment(id);
-  }
+  async updateAppointment(@Param('id') id: string, @Req() req: any) {
+    return await this.appointmentService.updateAppointmentStatus(id, req.body.status);
+ }
   
   @Roles('paciente', 'doctor', 'admin')
   @Delete(':id')
