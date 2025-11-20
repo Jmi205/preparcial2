@@ -90,11 +90,11 @@ INSERT INTO public.user_entity_roles_role_entity(
   ),
   (
     (SELECT id FROM user_entity WHERE email = 'user1@example.com'),
-    (SELECT id FROM role_entity WHERE role_name = 'user')
+    (SELECT id FROM role_entity WHERE role_name = 'paciente')
   ),
   (
     (SELECT id FROM user_entity WHERE email = 'user2@example.com'),
-    (SELECT id FROM role_entity WHERE role_name = 'user')
+    (SELECT id FROM role_entity WHERE role_name = 'paciente')
   ),
   (
     (SELECT id FROM user_entity WHERE email = 'doc1@example.com'),
