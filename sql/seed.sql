@@ -12,7 +12,8 @@ DELETE FROM role_entity;
 INSERT INTO role_entity (role_name, description)
 VALUES
   ('admin',  'Administrador del sistema'),
-  ('user',   'Usuario estándar');
+  ('paciente',   'Usuario estándar'),
+  ('doctor',   'Profesional de la salud');
 
 -- ============================================================================
 --  INSERCIÓN DE USUARIOS
@@ -50,7 +51,21 @@ VALUES
     'Usuario Normal 2',
     '3021122334',
     TRUE
-  );
+  ),
+  (
+    'doc1@example.com',
+    '$2a$10$Wpqv6yCVinpaZA9ITBgmyupVrV9cVJ2VDscrIkB8y2YoKUpdBTlBS',
+    'Doctor Uno',
+    '1216465',
+    TRUE
+  ),
+  (
+    'doc2@example.com',
+    '$2a$10$Wpqv6yCVinpaZA9ITBgmyupVrV9cVJ2VDscrIkB8y2YoKUpdBTlBS',
+    'Doctor Dos',
+    '645612321',
+    TRUE
+  ),;
 
 -- ============================================================================
 --  ASIGNACIÓN DE ROLES (MANY-TO-MANY)
@@ -80,6 +95,14 @@ INSERT INTO public.user_entity_roles_role_entity(
   (
     (SELECT id FROM user_entity WHERE email = 'user2@example.com'),
     (SELECT id FROM role_entity WHERE role_name = 'user')
+  ),
+  (
+    (SELECT id FROM user_entity WHERE email = 'doc1@example.com'),
+    (SELECT id FROM role_entity WHERE role_name = 'doctor')
+  ),
+  (
+    (SELECT id FROM user_entity WHERE email = 'doc2@example.com'),
+    (SELECT id FROM role_entity WHERE role_name = 'doctor')
   );
 
 -- ============================================================================

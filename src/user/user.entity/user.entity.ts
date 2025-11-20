@@ -1,3 +1,4 @@
+import { AppointmentEntity } from 'src/appointment/appointment.entity/appointment.entity';
 import { RoleEntity } from 'src/role/role.entity/role.entity';
 import {
   Column,
@@ -5,6 +6,7 @@ import {
   Entity,
   JoinTable,
   ManyToMany,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -34,4 +36,10 @@ export class UserEntity {
   @ManyToMany(() => RoleEntity, (role) => role.users)
   @JoinTable()
   roles: RoleEntity[];
+
+  @OneToMany(() => AppointmentEntity, (appointment) => appointment.paciente)
+  appointments: AppointmentEntity[];
+
+  @OneToMany(() => AppointmentEntity, (appointment) => appointment.doctor)
+  doctorAppointments: AppointmentEntity[];
 }

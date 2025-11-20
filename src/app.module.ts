@@ -7,6 +7,7 @@ import { RoleModule } from './role/role.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from './user/user.entity/user.entity';
 import { RoleEntity } from './role/role.entity/role.entity';
+import { AppointmentModule } from './appointment/appointment.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { RoleEntity } from './role/role.entity/role.entity';
       dropSchema: true,
       entities: [UserEntity, RoleEntity],
     }),
+    AppointmentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
